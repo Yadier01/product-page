@@ -1,10 +1,8 @@
-import React, { useEffect } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import MobileHeader from "./components/MobileHeader";
 
 function App() {
   const [isMobile, setIsMobile] = useState(false);
-
   const [count, setCount] = useState(0);
 
   const retractButtonHandler = () => {
@@ -13,9 +11,10 @@ function App() {
   const addButtonHandler = () => {
     setCount(count + 1);
   };
+
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth < 640);
+      setIsMobile(window.innerWidth < 900);
     };
 
     window.addEventListener("resize", handleResize);
@@ -31,27 +30,44 @@ function App() {
       {isMobile ? (
         <MobileHeader />
       ) : (
-        <header className="bg-white shadow-lg py-4 px-6">
+        <header className="bg-white shadow-lg py-4 px-6 ">
           {/* desktop header content here */}
-          <div>hello</div>
+          <div className="flex items-center justify-around">
+            <div className="flex items-center gap-20">
+              <img src="/public/logo.svg" alt="" />
+              <ul className="flex gap-9 ">
+                <li>Collections</li>
+                <li>Men</li>
+                <li>Women</li>
+                <li>About</li>
+                <li>Contact</li>
+              </ul>
+            </div>
+            <div className="flex items-center gap-12">
+              <img src="/public/icon-cart.svg" alt="" className="" />
+              <img src="/public/image-avatar.png" alt="" className="h-12" />
+            </div>
+          </div>
         </header>
       )}
       {/* main content here */}
       <main>
-        <img src="/public/image-product-1.jpg" alt="" className="" />
+        <img src="/public/image-product-1.jpg" alt="" className="bg-contain" />
         <div className="container grid gap-3 p-6">
           <h3 className="text-lg">SNEAKER COMPANY</h3>
-          <h1 className="text-4xl">Fall Limited Edition Sneakers</h1>
-          <p>
+          <h1 className="text-4xl ">Fall Limited Edition Sneakers</h1>
+          <p className="leading-relaxed">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore
             eligendi laudantium fugit pariatur quos sint delectus velit
-            aspernatur doloremque aliquam?
+            aspernatur doloremque aliquam
           </p>
-          <span className="flex  items-center gap-4">
-            <span className="text-3xl">$125.00</span>
-            <span className="text-lg">50%</span>
-            <span className="text-lg pl-[8rem] ">$250.00</span>
-          </span>
+          <div className="flex justify-between items-center gap-4">
+            <div className="flex gap-4 items-center ">
+              <span className="text-3xl">$125.00</span>
+              <span className="text-lg ">50%</span>
+            </div>
+            <span className="text-lg self-end  ">$250.00</span>
+          </div>
           <div className="flex items-center flex-col">
             <div className="">
               <button onClick={retractButtonHandler} className="p-4">
@@ -67,8 +83,11 @@ function App() {
                 +
               </button>
             </div>
-            <button className="bg-zinc-200 px-20 block">
-              <span className="flex items-center  gap-5 ">
+            <button
+              onClick={() => console.log(count)}
+              className=" text-white rounded-lg  p-4 w-full  bg-primary block"
+            >
+              <span className="flex justify-center items-center gap-5 ">
                 <img className="inline" src="/public/icon-cart.svg" alt="" />
                 Add to cart
               </span>
